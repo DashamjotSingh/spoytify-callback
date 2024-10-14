@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head><title>Spotify Callback</title></head>
+  <body>
+    <script>
+      // Spotify will put the token in the URL when redirecting to this page
+      const token = new URL(window.location.href).hash.match(/access_token=([^&]*)/)[1];
+
+      // Pass the token back to the Chrome extension
+      window.opener.postMessage({ token }, "*");
+
+      // Close the window after sending the token back
+      window.close();
+    </script>
+  </body>
+</html>
